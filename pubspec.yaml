@@ -9,6 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # Web
+  http: ^1.1.0
+
+  # State management
+  mobx: ^2.2.0
+  mockito: ^5.4.2
+  provider: ^6.0.5
+
+  
 
 dev_dependencies:
   flutter_test:
