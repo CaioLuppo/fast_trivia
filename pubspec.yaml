@@ -16,13 +16,14 @@ dependencies:
   # State management
   mobx: ^2.2.0
   provider: ^6.0.5
+  flutter_mobx: ^2.0.6+5
+
 
   # Mock
   mockito: ^5.4.2
   build_runner: ^2.4.6
 
   # Widgets
-  google_fonts: ^5.1.0
   flutter_svg: ^2.0.7
 
 dev_dependencies:
@@ -32,6 +33,18 @@ dev_dependencies:
   test: ^1.24.1
 
 flutter:
+  fonts:
+    - family: PoetsenOne
+      fonts:
+        - asset: fonts/PoetsenOne-Regular.ttf
+    - family: Inria Sans
+      fonts:
+        - asset: fonts/InriaSans-Regular.ttf
+        - asset: fonts/InriaSans-Bold.ttf
+          weight: 700
+        - asset: fonts/InriaSans-Light.ttf
+          weight: 200
   uses-material-design: true
   assets:
     - assets/
+
