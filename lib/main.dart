@@ -1,5 +1,5 @@
 import 'package:fast_trivia/view/resources/themes.dart';
-import 'package:fast_trivia/view/screens/home.dart';
+import 'package:fast_trivia/view/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
