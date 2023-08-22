@@ -23,8 +23,10 @@ class QuizSlider extends StatelessWidget {
               itemBuilder: (context, index) {
                 final gridList = controller.getQuizGridList(quizzes);
                 final int length = gridList[index].length;
-                final firstLine = controller.getFirstLine(length, index);
-                final secondLine = controller.getSecondLine(length, index);
+                final firstLine =
+                    controller.getFirstLine(length, index);
+                final secondLine =
+                    controller.getSecondLine(length, index);
                 controller.insertSpace(firstLine);
                 controller.insertSpace(secondLine);
 

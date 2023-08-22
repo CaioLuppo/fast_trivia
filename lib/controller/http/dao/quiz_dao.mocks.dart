@@ -7,8 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:fast_trivia/controller/http/dao/quiz_dao.dart' as _i2;
 import 'package:fast_trivia/model/quiz.dart' as _i4;
-import 'package:mockito/mockito.dart' as _i1;
 import 'package:fast_trivia/model/quiz.dart';
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
