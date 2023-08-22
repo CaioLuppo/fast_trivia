@@ -1,9 +1,10 @@
 library home;
 
+import 'package:fast_trivia/controller/components/home_imports.dart';
 import 'package:fast_trivia/controller/http/dao/quiz_dao.dart';
 import 'package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart';
+import 'package:fast_trivia/controller/store/bullet_store.dart';
 import 'package:fast_trivia/model/quiz.dart';
-import 'package:fast_trivia/store/bullet_store.dart';
 import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';

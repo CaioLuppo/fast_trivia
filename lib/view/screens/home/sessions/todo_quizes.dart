@@ -17,7 +17,7 @@ class QuizesSession extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: SizedBox(
-        height: 224 + 16,
+        height: 224 + 16, // Padding dos bullets
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

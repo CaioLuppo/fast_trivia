@@ -5,6 +5,7 @@ import 'package:fast_trivia/model/quiz.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 
+// Classe que funcionaria caso houvesse comunicação com API.
 @GenerateMocks([QuizDao])
 class QuizDao {
   Future<List<Quiz>> getQuestionnaries() async {

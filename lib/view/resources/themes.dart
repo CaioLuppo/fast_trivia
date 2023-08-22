@@ -6,8 +6,8 @@ final ThemeData lightTheme = ThemeData(
     color: Colors.grey[50],
     systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark
+      statusBarIconBrightness: Brightness.dark,
     ),
   ),
-  cardColor: const Color(0xFFFDFDFD)
+  cardColor: const Color(0xFFFDFDFD),
 );
