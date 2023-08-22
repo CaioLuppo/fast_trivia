@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
               listen: false,
             );
             return WillPopScope(
-              onWillPop: () => onWillPop(pageController, store),
+              onWillPop: () => onWillPop(context, pageController, store),
               child: Scaffold(
                 body: SafeArea(
                   child: Column(
