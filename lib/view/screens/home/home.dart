@@ -28,11 +28,31 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            QuizesSession(
-              title: "Testes disponíveis:",
-              emptyMessage: "Não há nenhum curso restante!",
-              futureFunction: mock.getQuestionnaries,
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: QuizesSession(
+                title: "Testes disponíveis:",
+                emptyMessage: "Não há nenhum curso restante!",
+                futureFunction: mock.getQuestionnaries,
+              ),
             ),
+            Observer(
+              builder: (_) => QuizesSession(
+                title: "Já realizados",
+                futureFunction: () => Future.value([]),
+                emptyMessage:
+                    "Seu questinário aparecerá aqui quando terminar! 😉",
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: InriaSans(
+                "By: Caio Luppo",
+                fontSize: 16,
+                color: TriviaColors.subtitles,
+              ),
+            )
           ],
         ),
       ),

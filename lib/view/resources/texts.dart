@@ -18,9 +18,11 @@ class InriaSans extends Text {
     required double fontSize,
     Color? color,
     FontWeight? fontWeight,
+    TextAlign? alignment,
     super.key,
   }) : super(
           text,
+          textAlign: alignment,
           style: TextStyle(
             color: color ?? Colors.black,
             fontFamily: "Inria Sans",

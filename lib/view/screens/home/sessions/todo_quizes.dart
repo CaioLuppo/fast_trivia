@@ -15,7 +15,7 @@ class QuizesSession extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.only(top: 16.0),
       child: SizedBox(
         height: 224 + 16, // Padding dos bullets
         child: Column(
@@ -42,12 +42,20 @@ class QuizesSession extends StatelessWidget {
                   );
                 } else {
                   if (snapshot.hasData) {
-                    return QuizSlider(snapshot.data as List<Quiz>);
+                    if (snapshot.data!.isNotEmpty) {
+                      return QuizSlider(snapshot.data as List<Quiz>);
+                    }
                   }
-                  return Center(
-                    child: InriaSans(
-                      emptyMessage,
-                      fontSize: 16,
+                  return Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(64),
+                        child: InriaSans(
+                          emptyMessage,
+                          alignment: TextAlign.center,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   );
                 }
