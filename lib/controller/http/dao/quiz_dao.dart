@@ -1,14 +1,16 @@
 import 'dart:convert';
+
 import 'package:fast_trivia/controller/http/credentials.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:fast_trivia/model/quiz.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 
+@GenerateMocks([QuizDao])
 class QuizDao {
   Future<List<Quiz>> getQuestionnaries() async {
     final response = await http.get(apiUrl);
     final Map<String, dynamic> json = jsonDecode(response.body);
-
+    
     return _convertList(json);
   }
 

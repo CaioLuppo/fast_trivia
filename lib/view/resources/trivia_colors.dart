@@ -18,5 +18,6 @@ class TriviaColors {
   static const Color yellow = Color(0xFFDBA600);
 
   static const Color cardBackground = Color(0xFDFDFDFD);
+  static const Color greyWidgets = Color(0xFFDDDDDD);
   static const Color subtitles = Color(0x99999999);
 }

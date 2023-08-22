@@ -1,12 +1,8 @@
 import "package:fast_trivia/controller/http/dao/quiz_dao.dart";
+import "package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart";
 import "package:fast_trivia/model/quiz.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:mockito/annotations.dart";
-import "package:mockito/mockito.dart" as m;
 
-import "quiz_test.mocks.dart";
-
-@GenerateMocks([QuizDao])
 void main() {
   test("Verifies if returns a instance with a proper map", () {
     final Map<String, dynamic> json = {

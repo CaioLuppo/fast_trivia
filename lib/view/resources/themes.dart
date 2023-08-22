@@ -1,4 +1,3 @@
-import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,7 +6,8 @@ final ThemeData lightTheme = ThemeData(
     color: Colors.grey[50],
     systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark
     ),
   ),
-  cardColor: TriviaColors.cardBackground
+  cardColor: const Color(0xFFFDFDFD)
 );
