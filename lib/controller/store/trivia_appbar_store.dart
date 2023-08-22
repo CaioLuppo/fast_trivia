@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'trivia_appbar_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class TriviaAppBarStore = _TriviaAppBarStore with _$TriviaAppBarStore;
 
 abstract class _TriviaAppBarStore with Store {

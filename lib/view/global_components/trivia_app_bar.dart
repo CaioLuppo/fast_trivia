@@ -1,5 +1,6 @@
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/main.dart';
+import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class TriviaAppBar extends StatelessWidget {
       height: 98,
       decoration: elevate
           ? BoxDecoration(
-              color: Colors.grey[50],
+              color: TriviaColors.scaffoldBg,
               boxShadow: const [BoxShadow(blurRadius: 4, offset: Offset(0, 4))],
               borderRadius: BorderRadius.circular(8),
             )

@@ -1,3 +1,4 @@
+import 'package:fast_trivia/controller/components/system.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';
 import 'package:fast_trivia/view/resources/themes.dart';
@@ -17,6 +18,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    updateSystemUi();
     return MaterialApp(
       theme: lightTheme,
       home: Provider(
@@ -28,20 +30,10 @@ class MainApp extends StatelessWidget {
               listen: false,
             );
             return WillPopScope(
-              onWillPop: () {
-                pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOut,
-                );
-                store.updateProperties(
-                  showBackButton: false,
-                  elevate: false,
-                );
-                return Future.value(false);
-              },
-              child: SafeArea(
-                child: Scaffold(
-                  body: Column(
+              onWillPop: () => onWillPop(pageController, store),
+              child: Scaffold(
+                body: SafeArea(
+                  child: Column(
                     children: [
                       Observer(
                         builder: (context) => TriviaAppBar(
