@@ -33,6 +33,10 @@ class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appbarStore = Provider.of<TriviaAppBarStore>(context, listen: false);
+    final confirmationStore = Provider.of<ConfirmationStore>(
+      context,
+      listen: false,
+    );
 
     return Expanded(
       flex: 1,
@@ -43,6 +47,7 @@ class QuizCard extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeOut,
           );
+          confirmationStore.updateConfirmationScreen(quizTitle, questionAmount);
           appbarStore.updateProperties(showBackButton: true);
         },
         borderRadius: BorderRadius.circular(8),
@@ -63,9 +68,16 @@ class QuizCard extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                PoetsenOne(
-                  quizTitle,
-                  fontSize: 16,
+                SizedBox(
+                  width: 124,
+                  height: 20,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: PoetsenOne(
+                      quizTitle,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),

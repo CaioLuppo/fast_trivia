@@ -1,25 +1,31 @@
 part of home;
 
 class QuizSliderController {
-  List<Widget> getSecondLine(int length, int index) {
+  List<Widget> getSecondLine(int length, int index, List<Quiz> quizzes) {
     return List.generate(
       length >= 2 ? length - 2 : 0,
-      (cardIndex) => QuizCard(
-        (cardIndex + (4 * index - 6) - 1),
-        24,
-        "testinho",
-      ),
+      (cardIndex) {
+        final realIndex = cardIndex + (4 * (index + 1) - 2);
+        return QuizCard(
+          realIndex,
+          quizzes[realIndex].questions.length,
+          quizzes[realIndex].title,
+        );
+      },
     );
   }
 
-  List<Widget> getFirstLine(int length, int index) {
+  List<Widget> getFirstLine(int length, int index, List<Quiz> quizzes) {
     return List.generate(
       length >= 2 ? 2 : length,
-      (cardIndex) => QuizCard(
-        cardIndex + (4 * index - 4) - 1,
-        24,
-        "testinho",
-      ),
+      (cardIndex) {
+        var realIndex = cardIndex + (4 * (index + 1) - 4);
+        return QuizCard(
+          realIndex,
+          quizzes[realIndex].questions.length,
+          quizzes[realIndex].title,
+        );
+      },
     );
   }
 

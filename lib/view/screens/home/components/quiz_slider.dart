@@ -24,9 +24,9 @@ class QuizSlider extends StatelessWidget {
                 final gridList = controller.getQuizGridList(quizzes);
                 final int length = gridList[index].length;
                 final firstLine =
-                    controller.getFirstLine(length, index);
+                    controller.getFirstLine(length, index, quizzes);
                 final secondLine =
-                    controller.getSecondLine(length, index);
+                    controller.getSecondLine(length, index, quizzes);
                 controller.insertSpace(firstLine);
                 controller.insertSpace(secondLine);
 

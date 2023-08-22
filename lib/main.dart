@@ -1,4 +1,5 @@
 import 'package:fast_trivia/controller/components/system.dart';
+import 'package:fast_trivia/controller/store/confirmation_store.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';
 import 'package:fast_trivia/view/resources/themes.dart';
@@ -21,8 +22,11 @@ class MainApp extends StatelessWidget {
     updateSystemUi();
     return MaterialApp(
       theme: lightTheme,
-      home: Provider(
-        create: (context) => TriviaAppBarStore(),
+      home: MultiProvider(
+        providers: [
+          Provider(create: (context) => TriviaAppBarStore()),
+          Provider(create: (context) => ConfirmationStore()),
+        ],
         child: Builder(
           builder: (context) {
             final store = Provider.of<TriviaAppBarStore>(
@@ -44,6 +48,7 @@ class MainApp extends StatelessWidget {
                       ),
                       Expanded(
                         child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
                           controller: pageController,
                           children: const [
                             HomeScreen(),
