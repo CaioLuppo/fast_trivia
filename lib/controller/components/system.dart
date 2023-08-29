@@ -5,7 +5,6 @@ import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobx/mobx.dart';
 
 void updateSystemUi() {
   SystemChrome.setSystemUIOverlayStyle(

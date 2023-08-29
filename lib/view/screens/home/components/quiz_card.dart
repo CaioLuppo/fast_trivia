@@ -39,7 +39,6 @@ class QuizCard extends StatelessWidget {
     );
 
     return Expanded(
-      flex: 1,
       child: InkWell(
         onTap: () {
           MainApp.pageController.animateToPage(
@@ -51,44 +50,44 @@ class QuizCard extends StatelessWidget {
           appbarStore.updateProperties(showBackButton: true);
         },
         borderRadius: BorderRadius.circular(8),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(width: 2, color: color),
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 4,
-                offset: Offset(0, 4),
-                color: Colors.black12,
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 124,
-                  height: 20,
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: PoetsenOne(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Container(
+            constraints: const BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(width: 2, color: color),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  color: Colors.black12,
+                )
+              ],
+            ),
+            child: FittedBox(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    PoetsenOne(
                       quizTitle,
                       fontSize: 16,
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: InriaSans(
+                        "$questionAmount Questões",
+                        color: TriviaColors.subtitles,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: InriaSans(
-                    "$questionAmount Questões",
-                    color: TriviaColors.subtitles,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),

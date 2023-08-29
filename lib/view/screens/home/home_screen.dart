@@ -17,7 +17,7 @@ import 'package:provider/provider.dart';
 part 'components/bullets.dart';
 part 'components/quiz_card.dart';
 part 'components/quiz_slider.dart';
-part 'sessions/todo_quizes.dart';
+part 'sessions/quizzes_session.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,32 +29,38 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: QuizesSession(
-                title: "Testes disponíveis:",
-                emptyMessage: "Não há nenhum curso restante!",
-                futureFunction: mock.getQuestionnaries,
+            Flexible(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: QuizzesSession(
+                  title: "Testes disponíveis:",
+                  emptyMessage: "Não há nenhum curso restante!",
+                  futureFunction: mock.getQuestionnaries,
+                ),
               ),
             ),
-            Observer(
-              builder: (_) => QuizesSession(
-                title: "Já realizados",
-                futureFunction: () => Future.value([]),
-                emptyMessage:
-                    "Seu questinário aparecerá aqui quando terminar! 😉",
+            Flexible(
+              flex: 2,
+              child: Observer(
+                builder: (_) => QuizzesSession(
+                  title: "Já realizados",
+                  futureFunction: () => Future.value([]),
+                  emptyMessage:
+                      "Seu questinário aparecerá aqui quando terminar! 😉",
+                ),
               ),
             ),
-            const Spacer(),
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: InriaSans(
                 "By: Caio Luppo",
                 fontSize: 16,
                 color: TriviaColors.subtitles,
               ),
-            )
+            ),
           ],
         ),
       ),
