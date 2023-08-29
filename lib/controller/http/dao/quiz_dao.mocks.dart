@@ -28,7 +28,7 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
   MockQuizDao() {
     _i1.throwOnMissingStub(this);
     _i1.when(getQuestionnaries()).thenAnswer((realInvocation) async {
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
       return Future.value(<Quiz>[
         Quiz({
           "questionario": {

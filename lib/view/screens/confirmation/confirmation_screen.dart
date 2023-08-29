@@ -17,22 +17,23 @@ class ConfirmationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<ConfirmationStore>(context);
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Header(store: store),
-              const Body(),
-              ActionButton(
-                "Iniciar questionário",
-                () {},
-                color: TriviaColors.blue,
-              )
-            ],
-          ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Header(store: store),
+            const Body(),
+            const SizedBox(
+              height: 16,
+            ),
+            ActionButton(
+              "Iniciar questionário",
+              () {},
+              color: TriviaColors.blue,
+            )
+          ],
         ),
       ),
     );

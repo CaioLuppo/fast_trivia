@@ -54,8 +54,7 @@ class TriviaAppBar extends StatelessWidget {
                   ),
                 )
               : Container(),
-          FractionalTranslation(
-            translation: const Offset(0.485, 0.5),
+          Center(
             child: SvgPicture.asset("assets/logo.svg"),
           ),
           !elevate

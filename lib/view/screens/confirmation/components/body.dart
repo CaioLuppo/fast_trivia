@@ -6,22 +6,25 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PoetsenOne(
-            "Instruções: ",
-            fontSize: 19,
-          ),
-          _identedInria(
-            [
-              "Reserve tempo e um espaço tranquilo para responder;",
-              "Selecione alguma das alternativas para prosseguir;",
-              "Tente se esforçar, para garantir a melhor nota! ;)",
-            ],
-            fontSize: 19,
-          )
-        ],
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PoetsenOne(
+              "Instruções: ",
+              fontSize: 19,
+            ),
+            _identedInria(
+              [
+                "Reserve tempo e um espaço tranquilo para responder;",
+                "Selecione alguma das alternativas para prosseguir;",
+                "Tente se esforçar, para garantir a melhor nota! ;)",
+              ],
+              fontSize: 19,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -42,7 +45,7 @@ Widget _identedInria(List<String> texts, {required double fontSize}) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InriaSans(
-                "  \u2E31  ",
+                "  ◉  ",
                 fontSize: fontSize,
                 fontWeight: FontWeight.w200,
               ),
