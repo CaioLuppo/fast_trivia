@@ -1,6 +1,7 @@
 library confirmation;
 
 import 'package:fast_trivia/controller/store/confirmation_store.dart';
+import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/view/global_components/button.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
@@ -16,7 +17,9 @@ class ConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    lockOrientation(false);
     final store = Provider.of<ConfirmationStore>(context);
+    
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),

@@ -1,4 +1,4 @@
-import 'package:fast_trivia/controller/components/system.dart';
+import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/controller/store/confirmation_store.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';

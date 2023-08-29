@@ -60,3 +60,22 @@ Future<bool> onWillPop(BuildContext context, PageController pageController,
   }
   return Future.value(false);
 }
+
+void lockOrientation(bool lock) async {
+  if (lock) {
+    return await SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
+  }
+  return await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
+}

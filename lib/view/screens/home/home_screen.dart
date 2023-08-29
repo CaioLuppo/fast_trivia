@@ -6,6 +6,7 @@ import 'package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart';
 import 'package:fast_trivia/controller/store/bullet_store.dart';
 import 'package:fast_trivia/controller/store/confirmation_store.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
+import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/main.dart';
 import 'package:fast_trivia/model/quiz.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    lockOrientation(true);
     final QuizDao mock = MockQuizDao();
 
     return Scaffold(
