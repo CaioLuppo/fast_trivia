@@ -41,11 +41,7 @@ class QuizCard extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          MainApp.pageController.animateToPage(
-            1,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
+          changePageTo(TriviaPages.confirmation);
           confirmationStore.updateConfirmationScreen(quizTitle, questionAmount);
           appbarStore.updateProperties(showBackButton: true);
         },

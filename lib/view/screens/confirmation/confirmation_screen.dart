@@ -1,5 +1,6 @@
 library confirmation;
 
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/controller/store/confirmation_store.dart';
 import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/view/global_components/button.dart';
@@ -20,24 +21,22 @@ class ConfirmationScreen extends StatelessWidget {
     lockOrientation(false);
     final store = Provider.of<ConfirmationStore>(context);
     
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Header(store: store),
-            const Body(),
-            const SizedBox(
-              height: 16,
-            ),
-            ActionButton(
-              "Iniciar questionário",
-              () {},
-              color: TriviaColors.blue,
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Header(store: store),
+          const Body(),
+          const SizedBox(
+            height: 16,
+          ),
+          ActionButton(
+            "Iniciar questionário",
+            () => changePageTo(TriviaPages.test),
+            color: TriviaColors.blue,
+          )
+        ],
       ),
     );
   }

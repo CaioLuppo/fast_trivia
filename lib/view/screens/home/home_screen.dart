@@ -1,6 +1,7 @@
 library home;
 
 import 'package:fast_trivia/controller/components/home_imports.dart';
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/controller/http/dao/quiz_dao.dart';
 import 'package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart';
 import 'package:fast_trivia/controller/store/bullet_store.dart';
@@ -28,44 +29,40 @@ class HomeScreen extends StatelessWidget {
     lockOrientation(true);
     final QuizDao mock = MockQuizDao();
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Flexible(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: QuizzesSession(
-                  title: "Testes disponíveis:",
-                  emptyMessage: "Não há nenhum curso restante!",
-                  futureFunction: mock.getQuestionnaries,
-                ),
+    return Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Flexible(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: QuizzesSession(
+                title: "Testes disponíveis:",
+                emptyMessage: "Não há nenhum curso restante!",
+                futureFunction: mock.getQuestionnaries,
               ),
             ),
-            Flexible(
-              flex: 2,
-              child: Observer(
-                builder: (_) => QuizzesSession(
-                  title: "Já realizados",
-                  futureFunction: () => Future.value([]),
-                  emptyMessage:
-                      "Seu questinário aparecerá aqui quando terminar! 😉",
-                ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Observer(
+              builder: (_) => QuizzesSession(
+                title: "Já realizados",
+                futureFunction: () => Future.value([]),
+                emptyMessage:
+                    "Seu questinário aparecerá aqui quando terminar! 😉",
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: InriaSans(
-                "By: Caio Luppo",
-                fontSize: 16,
-                color: TriviaColors.subtitles,
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: InriaSans(
+              "By: Caio Luppo",
+              fontSize: 16,
+              color: TriviaColors.subtitles,
             ),
-          ],
-        ),
-      ),
+          ),
+        ],
     );
   }
 }

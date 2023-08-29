@@ -1,5 +1,5 @@
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
-import 'package:fast_trivia/main.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,10 +8,8 @@ import 'package:provider/provider.dart';
 class TriviaAppBar extends StatelessWidget {
   final bool elevate;
   final bool showBackButton;
-  final BuildContext context;
 
-  const TriviaAppBar(
-    this.context, {
+  const TriviaAppBar({
     super.key,
     required this.elevate,
     required this.showBackButton,
@@ -35,22 +33,11 @@ class TriviaAppBar extends StatelessWidget {
               ? Align(
                   alignment: Alignment.centerLeft,
                   child: IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     padding: const EdgeInsets.only(left: 16),
-                    onPressed: () {
-                      Provider.of<TriviaAppBarStore>(this.context,
-                              listen: false)
-                          .updateProperties(
-                        elevate: false,
-                        showBackButton: false,
-                      );
-                      MainApp.pageController.previousPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeOut,
-                      );
-                    },
-                    icon: SvgPicture.asset(
-                      "assets/leading_appbar.svg",
-                    ),
+                    onPressed: () => changeToPreviousPage(),
+                    icon: SvgPicture.asset("assets/leading_appbar.svg"),
                   ),
                 )
               : Container(),
@@ -66,5 +53,12 @@ class TriviaAppBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  static updateProperties(BuildContext context, bool showButton) {
+    Provider.of<TriviaAppBarStore>(
+      context,
+      listen: false,
+    ).updateProperties(elevate: false, showBackButton: showButton);
   }
 }

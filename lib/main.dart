@@ -1,3 +1,4 @@
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/controller/store/confirmation_store.dart';
 import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
@@ -10,11 +11,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const FastTrivia());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class FastTrivia extends StatelessWidget {
+  const FastTrivia({super.key});
   static final PageController pageController = PageController();
 
   @override
@@ -41,7 +42,6 @@ class MainApp extends StatelessWidget {
                     children: [
                       Observer(
                         builder: (context) => TriviaAppBar(
-                          context,
                           elevate: store.elevate,
                           showBackButton: store.showBackButton,
                         ),
@@ -49,10 +49,19 @@ class MainApp extends StatelessWidget {
                       Expanded(
                         child: PageView(
                           physics: const NeverScrollableScrollPhysics(),
+                          onPageChanged: (pageIndex) {
+                            TriviaAppBar.updateProperties(
+                              context,
+                              pageIndex == TriviaPages.home.index
+                                  ? false
+                                  : true,
+                            );
+                          },
                           controller: pageController,
                           children: const [
                             HomeScreen(),
                             ConfirmationScreen(),
+                            Column(),
                           ],
                         ),
                       ),

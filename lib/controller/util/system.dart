@@ -24,10 +24,6 @@ Future<bool> onWillPop(BuildContext context, PageController pageController,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
-    store.updateProperties(
-      showBackButton: false,
-      elevate: false,
-    );
   } else {
     showDialog(
         context: context,
