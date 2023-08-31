@@ -1,15 +1,18 @@
 import 'package:fast_trivia/view/resources/texts.dart';
+import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
   final String text;
   final void Function() onPressed;
   final Color? color;
+  final bool disabled;
 
   const ActionButton(
     this.text,
     this.onPressed, {
     this.color,
+    this.disabled = false,
     super.key,
   });
 
@@ -21,8 +24,8 @@ class ActionButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: color == null ? Border.all(color: Colors.black) : null,
-        color: color ?? Colors.transparent,
-        boxShadow: color != null
+        color: color != null && !disabled ? color : TriviaColors.greyWidgets,
+        boxShadow: color != null && !disabled
             ? const [
                 BoxShadow(
                   color: Colors.black12,

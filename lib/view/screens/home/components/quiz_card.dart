@@ -1,8 +1,7 @@
 part of home;
 
 class QuizCard extends StatelessWidget {
-  final int questionAmount;
-  final String quizTitle;
+  final Quiz quiz;
   final int index;
 
   static int cardAmount = 0;
@@ -23,8 +22,7 @@ class QuizCard extends StatelessWidget {
 
   QuizCard(
     this.index,
-    this.questionAmount,
-    this.quizTitle, {
+    this.quiz, {
     super.key,
   }) {
     cardAmount++;
@@ -33,7 +31,7 @@ class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appbarStore = Provider.of<TriviaAppBarStore>(context, listen: false);
-    final confirmationStore = Provider.of<ConfirmationStore>(
+    final confirmationStore = Provider.of<QuizStore>(
       context,
       listen: false,
     );
@@ -42,7 +40,7 @@ class QuizCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           changePageTo(TriviaPages.confirmation);
-          confirmationStore.updateConfirmationScreen(quizTitle, questionAmount);
+          confirmationStore.updateConfirmationScreen(quiz);
           appbarStore.updateProperties(showBackButton: true);
         },
         borderRadius: BorderRadius.circular(8),
@@ -69,13 +67,13 @@ class QuizCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     PoetsenOne(
-                      quizTitle,
+                      quiz.title,
                       fontSize: 16,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: InriaSans(
-                        "$questionAmount Questões",
+                        "${quiz.questions.length} Questões",
                         color: TriviaColors.subtitles,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,

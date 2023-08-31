@@ -65,7 +65,7 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
         Quiz({
           "questionario": {
             "id": 1,
-            "titulo": "Natureza brasileira",
+            "titulo": "Meu cantinho",
             "questoes": [
               {
                 "id": 1,

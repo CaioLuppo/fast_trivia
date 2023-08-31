@@ -6,7 +6,7 @@ class Header extends StatelessWidget {
     required this.store,
   });
 
-  final ConfirmationStore store;
+  final QuizStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,11 @@ class Header extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PoetsenOne(
-              store.title,
+              store.quiz!.title,
               fontSize: 23,
             ),
             InriaSans(
-              "${store.questionsAmount} Questões",
+              "${store.quiz!.questions.length} Questões",
               fontSize: 19,
               fontWeight: FontWeight.w700,
               color: TriviaColors.subtitles,

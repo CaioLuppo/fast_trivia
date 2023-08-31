@@ -9,6 +9,13 @@ void changePageTo(TriviaPages page) {
   );
 }
 
+void changeToNextPage() {
+  FastTrivia.pageController.nextPage(
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.easeOut,
+  );
+}
+
 void changeToPreviousPage() {
   FastTrivia.pageController.previousPage(
     duration: const Duration(milliseconds: 300),

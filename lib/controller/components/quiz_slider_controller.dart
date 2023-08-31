@@ -8,8 +8,7 @@ class QuizSliderController {
         final realIndex = cardIndex + (4 * (index + 1) - 2);
         return QuizCard(
           realIndex,
-          quizzes[realIndex].questions.length,
-          quizzes[realIndex].title,
+          quizzes[realIndex],
         );
       },
     );
@@ -22,8 +21,7 @@ class QuizSliderController {
         var realIndex = cardIndex + (4 * (index + 1) - 4);
         return QuizCard(
           realIndex,
-          quizzes[realIndex].questions.length,
-          quizzes[realIndex].title,
+          quizzes[realIndex],
         );
       },
     );

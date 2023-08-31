@@ -22,7 +22,13 @@ class TriviaAppBar extends StatelessWidget {
       decoration: elevate
           ? BoxDecoration(
               color: TriviaColors.scaffoldBg,
-              boxShadow: const [BoxShadow(blurRadius: 4, offset: Offset(0, 4))],
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  color: Colors.black12,
+                )
+              ],
               borderRadius: BorderRadius.circular(8),
             )
           : null,
@@ -55,10 +61,10 @@ class TriviaAppBar extends StatelessWidget {
     );
   }
 
-  static updateProperties(BuildContext context, bool showButton) {
+  static updateProperties(BuildContext context, bool showButton, bool elevate) {
     Provider.of<TriviaAppBarStore>(
       context,
       listen: false,
-    ).updateProperties(elevate: false, showBackButton: showButton);
+    ).updateProperties(elevate: elevate, showBackButton: showButton);
   }
 }
