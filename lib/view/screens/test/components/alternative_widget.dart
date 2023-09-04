@@ -2,10 +2,17 @@ part of test;
 
 class AlternativeWidget extends StatelessWidget {
   final int index;
+  final int questionId;
   final String title;
   final AlternativeStore store;
 
-  const AlternativeWidget(this.store, this.index, this.title, {super.key});
+  const AlternativeWidget(
+    this.store,
+    this.index,
+    this.title,
+    this.questionId, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class AlternativeWidget extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () => store.updateSelected(index),
+              onTap: () => store.updateSelected(context, index, questionId),
               borderRadius: BorderRadius.circular(8),
               highlightColor: Colors.black26,
               splashColor: Colors.transparent,

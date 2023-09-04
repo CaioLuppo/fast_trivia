@@ -9,13 +9,6 @@ part of 'quiz_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$QuizStore on _QuizStore, Store {
-  Computed<List<Widget>>? _$pagesComputed;
-
-  @override
-  List<Widget> get pages => (_$pagesComputed ??=
-          Computed<List<Widget>>(() => super.pages, name: '_QuizStore.pages'))
-      .value;
-
   late final _$quizAtom = Atom(name: '_QuizStore.quiz', context: context);
 
   @override
@@ -31,24 +24,51 @@ mixin _$QuizStore on _QuizStore, Store {
     });
   }
 
-  late final _$questionPagesAtom =
-      Atom(name: '_QuizStore.questionPages', context: context);
+  late final _$currentQuestionIndexAtom =
+      Atom(name: '_QuizStore.currentQuestionIndex', context: context);
 
   @override
-  ObservableList<TestScreen> get questionPages {
-    _$questionPagesAtom.reportRead();
-    return super.questionPages;
+  int get currentQuestionIndex {
+    _$currentQuestionIndexAtom.reportRead();
+    return super.currentQuestionIndex;
   }
 
   @override
-  set questionPages(ObservableList<TestScreen> value) {
-    _$questionPagesAtom.reportWrite(value, super.questionPages, () {
-      super.questionPages = value;
+  set currentQuestionIndex(int value) {
+    _$currentQuestionIndexAtom.reportWrite(value, super.currentQuestionIndex,
+        () {
+      super.currentQuestionIndex = value;
+    });
+  }
+
+  late final _$answersAtom = Atom(name: '_QuizStore.answers', context: context);
+
+  @override
+  Map<int, int> get answers {
+    _$answersAtom.reportRead();
+    return super.answers;
+  }
+
+  @override
+  set answers(Map<int, int> value) {
+    _$answersAtom.reportWrite(value, super.answers, () {
+      super.answers = value;
     });
   }
 
   late final _$_QuizStoreActionController =
       ActionController(name: '_QuizStore', context: context);
+
+  @override
+  void updateCurrentIndex(int index) {
+    final _$actionInfo = _$_QuizStoreActionController.startAction(
+        name: '_QuizStore.updateCurrentIndex');
+    try {
+      return super.updateCurrentIndex(index);
+    } finally {
+      _$_QuizStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void updateConfirmationScreen(Quiz quiz) {
@@ -62,11 +82,22 @@ mixin _$QuizStore on _QuizStore, Store {
   }
 
   @override
-  void updateQuestionsScreen() {
-    final _$actionInfo = _$_QuizStoreActionController.startAction(
-        name: '_QuizStore.updateQuestionsScreen');
+  void addAnswer(int questionIndex, int answer) {
+    final _$actionInfo =
+        _$_QuizStoreActionController.startAction(name: '_QuizStore.addAnswer');
     try {
-      return super.updateQuestionsScreen();
+      return super.addAnswer(questionIndex, answer);
+    } finally {
+      _$_QuizStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearAnswers() {
+    final _$actionInfo = _$_QuizStoreActionController.startAction(
+        name: '_QuizStore.clearAnswers');
+    try {
+      return super.clearAnswers();
     } finally {
       _$_QuizStoreActionController.endAction(_$actionInfo);
     }
@@ -76,8 +107,8 @@ mixin _$QuizStore on _QuizStore, Store {
   String toString() {
     return '''
 quiz: ${quiz},
-questionPages: ${questionPages},
-pages: ${pages}
+currentQuestionIndex: ${currentQuestionIndex},
+answers: ${answers}
     ''';
   }
 }

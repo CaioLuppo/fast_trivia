@@ -1,4 +1,7 @@
+import 'package:fast_trivia/model/store/quiz_store.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:provider/provider.dart';
 
 part 'alternative_store.g.dart';
 
@@ -10,7 +13,8 @@ abstract class _AlternativeStore with Store {
   int? selectedAlternative;
 
   @action
-  void updateSelected(int index) {
+  void updateSelected(BuildContext context, int index, int questionId) {
     selectedAlternative = index;
+    Provider.of<QuizStore>(context, listen: false).addAnswer(questionId, index);
   }
 }

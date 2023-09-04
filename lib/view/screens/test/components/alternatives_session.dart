@@ -25,6 +25,7 @@ class AlternativesSession extends StatelessWidget {
                   store,
                   alternative.id,
                   alternative.title,
+                  question.id,
                 );
               },
             ),

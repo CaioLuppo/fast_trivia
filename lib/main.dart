@@ -1,9 +1,12 @@
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
-import 'package:fast_trivia/controller/store/quiz_store.dart';
-import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/controller/util/system.dart';
+import 'package:fast_trivia/model/store/quiz_store.dart';
+import 'package:fast_trivia/model/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';
 import 'package:fast_trivia/view/resources/themes.dart';
+import 'package:fast_trivia/view/screens/confirmation/confirmation_screen.dart';
+import 'package:fast_trivia/view/screens/home/home_screen.dart';
+import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +35,6 @@ class FastTrivia extends StatelessWidget {
               context,
               listen: false,
             );
-            final quizStore = Provider.of<QuizStore>(context, listen: false);
             return WillPopScope(
               onWillPop: () => onWillPop(context, pageController, appBarStore),
               child: Scaffold(
@@ -62,7 +64,11 @@ class FastTrivia extends StatelessWidget {
                                 );
                               },
                               controller: pageController,
-                              children: quizStore.pages,
+                              children: const [
+                                HomeScreen(),
+                                ConfirmationScreen(),
+                                TestScreen(),
+                              ],
                             );
                           },
                         ),

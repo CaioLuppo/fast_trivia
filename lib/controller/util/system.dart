@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:fast_trivia/controller/store/trivia_appbar_store.dart';
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
+import 'package:fast_trivia/model/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +20,8 @@ void updateSystemUi() {
 
 Future<bool> onWillPop(BuildContext context, PageController pageController,
     TriviaAppBarStore store) {
-  if (pageController.page != 0) {
-    pageController.previousPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
-    );
+  if (pageController.page != TriviaPages.home.index) {
+    changeToPreviousPage(context);
   } else {
     showDialog(
         context: context,

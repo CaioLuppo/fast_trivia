@@ -2,9 +2,9 @@ library test;
 
 import 'package:fast_trivia/controller/components/alternatives_controller.dart';
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
-import 'package:fast_trivia/controller/store/alternative_store.dart';
-import 'package:fast_trivia/controller/store/quiz_store.dart';
 import 'package:fast_trivia/model/question.dart';
+import 'package:fast_trivia/model/store/alternative_store.dart';
+import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:fast_trivia/view/global_components/button.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
@@ -12,40 +12,65 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
+part 'components/alternative_widget.dart';
 part 'components/alternatives_session.dart';
 part 'components/question_header.dart';
-part 'components/alternative_widget.dart';
+part 'components/question_page.dart';
 
 class TestScreen extends StatelessWidget {
-  final Question question;
+  static final PageController controller = PageController();
 
-  const TestScreen(this.question, {super.key});
+  const TestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final AlternativeStore store = AlternativeStore();
     final quizStore = Provider.of<QuizStore>(context, listen: false);
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          QuestionHeader(question),
-          AlternativesSession(store, question),
-          const Spacer(),
-          Observer(
-            builder: (_) {
-              final bool isLast = question.id == quizStore.questionPages.length;
-              return ActionButton(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: PageView(
+            controller: controller,
+            onPageChanged: (index) => quizStore.updateCurrentIndex(index),
+            children: List.generate(
+              quizStore.quiz!.questions.length,
+              (index) {
+                final AlternativeStore store = AlternativeStore();
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 24,
+                  ),
+                  child: QuestionPage(quizStore.quiz!.questions[index], store),
+                );
+              },
+            ),
+          ),
+        ),
+        Observer(
+          builder: (_) {
+            final bool isLast = quizStore.currentQuestionIndex + 1 ==
+                quizStore.quiz!.questions.length;
+            final bool isSelected = quizStore.answers.containsKey(
+              quizStore.currentQuestionIndex + 1,
+            );
+            return Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                bottom: 24.0,
+              ),
+              child: ActionButton(
                 isLast ? "Finalizar teste" : "Próxima questão",
-                () => changeToNextPage(),
+                () => isSelected ? changeToNextPage(controller) : null,
                 color: isLast ? TriviaColors.red : TriviaColors.green,
-                disabled: store.selectedAlternative == null,
-              );
-            },
-          )
-        ],
-      ),
+                disabled: !isSelected,
+              ),
+            );
+          },
+        )
+      ],
     );
   }
 }

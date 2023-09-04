@@ -1,8 +1,8 @@
 library confirmation;
 
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
-import 'package:fast_trivia/controller/store/quiz_store.dart';
 import 'package:fast_trivia/controller/util/system.dart';
+import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:fast_trivia/view/global_components/button.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
@@ -34,7 +34,6 @@ class ConfirmationScreen extends StatelessWidget {
           ActionButton(
             "Iniciar questionário",
             () {
-              store.updateQuestionsScreen();
               changePageTo(TriviaPages.test);
             },
             color: TriviaColors.blue,
