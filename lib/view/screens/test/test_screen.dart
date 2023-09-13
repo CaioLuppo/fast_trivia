@@ -1,7 +1,6 @@
 library test;
 
 import 'package:fast_trivia/controller/components/alternatives_controller.dart';
-import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/model/question.dart';
 import 'package:fast_trivia/model/store/alternative_store.dart';
 import 'package:fast_trivia/model/store/quiz_store.dart';
@@ -11,6 +10,7 @@ import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import 'package:fast_trivia/controller/components/test_controller.dart';
 
 part 'components/alternative_widget.dart';
 part 'components/alternatives_session.dart';
@@ -52,7 +52,8 @@ class TestScreen extends StatelessWidget {
           builder: (_) {
             final bool isLast = quizStore.currentQuestionIndex + 1 ==
                 quizStore.quiz!.questions.length;
-            final bool isSelected = quizStore.answers.containsKey(
+            final bool isSelected =
+                quizStore.answers[quizStore.quiz!.id]!.containsKey(
               quizStore.currentQuestionIndex + 1,
             );
             return Padding(
@@ -63,7 +64,7 @@ class TestScreen extends StatelessWidget {
               ),
               child: ActionButton(
                 isLast ? "Finalizar teste" : "Próxima questão",
-                () => isSelected ? changeToNextPage(controller) : null,
+                () => isSelected ? nextQuestion(context, end: isLast) : null,
                 color: isLast ? TriviaColors.red : TriviaColors.green,
                 disabled: !isSelected,
               ),

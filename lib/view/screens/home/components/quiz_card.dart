@@ -31,7 +31,7 @@ class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appbarStore = Provider.of<TriviaAppBarStore>(context, listen: false);
-    final confirmationStore = Provider.of<QuizStore>(
+    final quizStore = Provider.of<QuizStore>(
       context,
       listen: false,
     );
@@ -40,7 +40,7 @@ class QuizCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           changePageTo(TriviaPages.confirmation);
-          confirmationStore.updateConfirmationScreen(quiz);
+          quizStore.updateConfirmationScreen(quiz);
           appbarStore.updateProperties(showBackButton: true);
         },
         borderRadius: BorderRadius.circular(8),

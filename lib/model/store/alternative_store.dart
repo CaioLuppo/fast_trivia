@@ -13,8 +13,8 @@ abstract class _AlternativeStore with Store {
   int? selectedAlternative;
 
   @action
-  void updateSelected(BuildContext context, int index, int questionId) {
-    selectedAlternative = index;
-    Provider.of<QuizStore>(context, listen: false).addAnswer(questionId, index);
+  void updateSelected(BuildContext context, int answerId, int questionId) {
+    selectedAlternative = answerId;
+    Provider.of<QuizStore>(context, listen: false).addAnswer(questionId, answerId);
   }
 }

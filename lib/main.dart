@@ -6,6 +6,7 @@ import 'package:fast_trivia/view/global_components/trivia_app_bar.dart';
 import 'package:fast_trivia/view/resources/themes.dart';
 import 'package:fast_trivia/view/screens/confirmation/confirmation_screen.dart';
 import 'package:fast_trivia/view/screens/home/home_screen.dart';
+import 'package:fast_trivia/view/screens/result/result_screen.dart';
 import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -68,6 +69,7 @@ class FastTrivia extends StatelessWidget {
                                 HomeScreen(),
                                 ConfirmationScreen(),
                                 TestScreen(),
+                                ResultScreen(),
                               ],
                             );
                           },

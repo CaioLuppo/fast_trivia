@@ -44,13 +44,13 @@ mixin _$QuizStore on _QuizStore, Store {
   late final _$answersAtom = Atom(name: '_QuizStore.answers', context: context);
 
   @override
-  Map<int, int> get answers {
+  Map<int, ObservableMap<int, int>> get answers {
     _$answersAtom.reportRead();
     return super.answers;
   }
 
   @override
-  set answers(Map<int, int> value) {
+  set answers(Map<int, ObservableMap<int, int>> value) {
     _$answersAtom.reportWrite(value, super.answers, () {
       super.answers = value;
     });
@@ -82,22 +82,11 @@ mixin _$QuizStore on _QuizStore, Store {
   }
 
   @override
-  void addAnswer(int questionIndex, int answer) {
+  void addAnswer(int alternativeId, int answer) {
     final _$actionInfo =
         _$_QuizStoreActionController.startAction(name: '_QuizStore.addAnswer');
     try {
-      return super.addAnswer(questionIndex, answer);
-    } finally {
-      _$_QuizStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void clearAnswers() {
-    final _$actionInfo = _$_QuizStoreActionController.startAction(
-        name: '_QuizStore.clearAnswers');
-    try {
-      return super.clearAnswers();
+      return super.addAnswer(alternativeId, answer);
     } finally {
       _$_QuizStoreActionController.endAction(_$actionInfo);
     }

@@ -14,7 +14,7 @@ abstract class _QuizStore with Store {
   int currentQuestionIndex = 0;
 
   @observable
-  Map<int, int> answers = ObservableMap();
+  Map<int, ObservableMap<int, int>> answers = ObservableMap();
 
   @action
   void updateCurrentIndex(int index) {
@@ -27,13 +27,11 @@ abstract class _QuizStore with Store {
   }
 
   @action
-  void addAnswer(int questionIndex, int answer) {
-    answers[questionIndex] = answer;
-  }
-
-  @action
-  void clearAnswers() {
-    answers.clear();
-    currentQuestionIndex = 0;
+  void addAnswer(int alternativeId, int answer) {
+    if (answers[quiz!.id] != null) {
+      answers[quiz!.id]![alternativeId] = answer;
+    } else {
+      answers[quiz!.id] = ObservableMap.of({alternativeId: answer});
+    }
   }
 }

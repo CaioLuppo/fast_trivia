@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/model/store/trivia_appbar_store.dart';
-import 'package:fast_trivia/view/resources/texts.dart';
+import 'package:fast_trivia/view/global_components/dialog.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,40 +19,19 @@ void updateSystemUi() {
 }
 
 Future<bool> onWillPop(BuildContext context, PageController pageController,
-    TriviaAppBarStore store) {
+    TriviaAppBarStore store) async {
   if (pageController.page != TriviaPages.home.index) {
     changeToPreviousPage(context);
+    return Future.value(false);
   } else {
-    showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-              title: Center(child: PoetsenOne("Deseja sair?", fontSize: 19)),
-              actionsAlignment: MainAxisAlignment.spaceEvenly,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              actions: [
-                TextButton(
-                  onPressed: () => exit(0),
-                  child: InriaSans(
-                    "SIM",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: TriviaColors.blue,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: InriaSans(
-                    "NÃO",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: TriviaColors.blue,
-                  ),
-                ),
-              ],
-            ));
+    await showAlertDialog(
+      context,
+      title: "Deseja sair?",
+      yes: () => exit(0),
+      no: () => Navigator.of(context).pop(),
+    );
+    return Future.value(false);
   }
-  return Future.value(false);
 }
 
 void lockOrientation(bool lock) async {

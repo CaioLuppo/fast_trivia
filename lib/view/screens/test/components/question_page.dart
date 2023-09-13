@@ -11,7 +11,10 @@ class QuestionPage extends StatelessWidget {
     return Column(
       children: [
         QuestionHeader(question),
-        AlternativesSession(store, question),
+        AlternativesSession(
+          store,
+          question,
+        ),
         const Spacer(),
       ],
     );

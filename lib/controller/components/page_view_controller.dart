@@ -1,8 +1,7 @@
 import 'package:fast_trivia/main.dart';
-import 'package:fast_trivia/model/store/quiz_store.dart';
+import 'package:fast_trivia/view/global_components/dialog.dart';
 import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void changePageTo(TriviaPages page) {
   FastTrivia.pageController.animateToPage(
@@ -12,29 +11,45 @@ void changePageTo(TriviaPages page) {
   );
 }
 
-void changeToNextPage(PageController controller) {
-  controller.nextPage(
+void changeToNextPage() {
+  FastTrivia.pageController.nextPage(
     duration: const Duration(milliseconds: 300),
     curve: Curves.easeOut,
   );
 }
 
-void changeToPreviousPage(BuildContext context) {
+void changeToPreviousPage(BuildContext context) async {
   final double? page = FastTrivia.pageController.page;
 
-  if (page == TriviaPages.home.index) {
-  } else if (page == TriviaPages.test.index) {
-    if (TestScreen.controller.page == 0) {
-      Provider.of<QuizStore>(context, listen: false).clearAnswers();
-    } else {
+  if (page == TriviaPages.test.index) {
+    final double? page = TestScreen.controller.page;
+    if (page != 0) {
       TestScreen.controller.previousPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
       return;
+    } else {
+      bool doReturn = false;
+      await showAlertDialog(
+        context,
+        title: "Quer mesmo voltar?",
+        description: "Caso saia, o progresso do quiz será perdido.",
+        yes: () => Navigator.pop(context),
+        no: () {
+          Navigator.pop(context);
+          doReturn = true;
+        },
+      );
+      if (doReturn) return;
     }
+  } else if (page == TriviaPages.result.index) {
+    FastTrivia.pageController.jumpToPage(
+      TriviaPages.home.index,
+    );
+    return;
   }
-  
+
   FastTrivia.pageController.previousPage(
     duration: const Duration(milliseconds: 300),
     curve: Curves.easeInOut,
@@ -49,4 +64,5 @@ enum TriviaPages {
   home,
   confirmation,
   test,
+  result,
 }

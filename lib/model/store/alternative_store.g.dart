@@ -29,11 +29,11 @@ mixin _$AlternativeStore on _AlternativeStore, Store {
       ActionController(name: '_AlternativeStore', context: context);
 
   @override
-  void updateSelected(BuildContext context, int index, int questionId) {
+  void updateSelected(BuildContext context, int answerId, int questionId) {
     final _$actionInfo = _$_AlternativeStoreActionController.startAction(
         name: '_AlternativeStore.updateSelected');
     try {
-      return super.updateSelected(context, index, questionId);
+      return super.updateSelected(context, answerId, questionId);
     } finally {
       _$_AlternativeStoreActionController.endAction(_$actionInfo);
     }
