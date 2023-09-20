@@ -24,7 +24,9 @@ class ActionButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: color == null ? Border.all(color: Colors.black) : null,
-        color: color != null && !disabled ? color : TriviaColors.greyWidgets,
+        color: color != null
+            ? (disabled ? TriviaColors.greyWidgets : color)
+            : Colors.transparent,
         boxShadow: color != null && !disabled
             ? const [
                 BoxShadow(

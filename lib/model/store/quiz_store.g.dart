@@ -9,6 +9,20 @@ part of 'quiz_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$QuizStore on _QuizStore, Store {
+  Computed<int>? _$correctAnswersComputed;
+
+  @override
+  int get correctAnswers =>
+      (_$correctAnswersComputed ??= Computed<int>(() => super.correctAnswers,
+              name: '_QuizStore.correctAnswers'))
+          .value;
+  Computed<double>? _$percentComputed;
+
+  @override
+  double get percent => (_$percentComputed ??=
+          Computed<double>(() => super.percent, name: '_QuizStore.percent'))
+      .value;
+
   late final _$quizAtom = Atom(name: '_QuizStore.quiz', context: context);
 
   @override
@@ -97,7 +111,9 @@ mixin _$QuizStore on _QuizStore, Store {
     return '''
 quiz: ${quiz},
 currentQuestionIndex: ${currentQuestionIndex},
-answers: ${answers}
+answers: ${answers},
+correctAnswers: ${correctAnswers},
+percent: ${percent}
     ''';
   }
 }

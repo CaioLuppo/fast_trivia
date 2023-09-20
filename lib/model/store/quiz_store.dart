@@ -1,3 +1,4 @@
+import 'package:fast_trivia/model/question.dart';
 import 'package:fast_trivia/model/quiz.dart';
 import 'package:mobx/mobx.dart';
 
@@ -15,6 +16,21 @@ abstract class _QuizStore with Store {
 
   @observable
   Map<int, ObservableMap<int, int>> answers = ObservableMap();
+
+  @computed
+  int get correctAnswers {
+    int count = 0;
+    for (Question element in quiz!.questions) {
+      bool correct = element.answer == answers[quiz!.id]![element.id];
+      if (correct) count++;
+    }
+    return count;
+  }
+
+  @computed
+  double get percent {
+    return 100 * correctAnswers / quiz!.questions.length;
+  }
 
   @action
   void updateCurrentIndex(int index) {
