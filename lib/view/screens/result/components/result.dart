@@ -6,26 +6,16 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuizStore store = Provider.of<QuizStore>(context);
-    String resultMessage = "";
-    Color resultColor = Colors.black;
-
-    if (store.percent > 0 && store.percent < 100) {
-      resultMessage = "Quase lá!";
-      resultColor = TriviaColors.purple;
-    } else if (store.percent == 0) {
-      resultMessage = "Oops! 🤔";
-      resultColor = TriviaColors.red;
-    } else {
-      resultMessage = "Parabéns!";
-      resultColor = TriviaColors.green;
-    }
-
     return Expanded(
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            PoetsenOne(resultMessage, color: resultColor, fontSize: 40),
+            PoetsenOne(
+              getResultInfo(ResultInfo.message, store),
+              color: getResultInfo(ResultInfo.color, store),
+              fontSize: 40,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: SizedBox(
@@ -39,7 +29,7 @@ class Result extends StatelessWidget {
                       child: CircularProgressIndicator(
                         value: store.percent / 100,
                         strokeWidth: 8,
-                        color: resultColor,
+                        color: getResultInfo(ResultInfo.color, store),
                         backgroundColor: TriviaColors.greyWidgets,
                       ),
                     ),
@@ -50,12 +40,13 @@ class Result extends StatelessWidget {
                         PoetsenOne(
                           "${store.percent.toStringAsFixed(0)}%",
                           fontSize: 40,
-                          color: resultColor,
+                          color: getResultInfo(ResultInfo.color, store),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: InriaSans(
-                            "${store.correctAnswers}/${store.quiz!.questions.length} Questões corretas.",
+                            "${store.correctAnswers}/${store.quiz!.questions.length} "
+                            "Questões corretas.",
                             fontSize: 16,
                             alignment: TextAlign.center,
                           ),

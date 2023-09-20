@@ -1,6 +1,7 @@
 library result;
 
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
+import 'package:fast_trivia/controller/components/result_controller.dart';
 import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:fast_trivia/view/global_components/button.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
