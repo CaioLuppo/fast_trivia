@@ -8,6 +8,8 @@ part 'quiz_store.g.dart';
 class QuizStore = _QuizStore with _$QuizStore;
 
 abstract class _QuizStore with Store {
+  // Observables
+
   @observable
   Quiz? quiz;
 
@@ -16,6 +18,8 @@ abstract class _QuizStore with Store {
 
   @observable
   Map<int, ObservableMap<int, int>> answers = ObservableMap();
+
+  // Computed
 
   @computed
   int get correctAnswers {
@@ -31,6 +35,8 @@ abstract class _QuizStore with Store {
   double get percent {
     return 100 * correctAnswers / quiz!.questions.length;
   }
+
+  // Actions
 
   @action
   void updateCurrentIndex(int index) {
@@ -51,9 +57,26 @@ abstract class _QuizStore with Store {
     }
   }
 
+  // Normal methods
+
   bool isCorrect(int answerIndex) {
     final question = quiz!.questions[answerIndex];
     final actualAnswer = answers[quiz!.id]![question.id];
     return question.answer == actualAnswer;
   }
+
+  String getSelectedAlternativeTitle({
+    required int selectedAlternative,
+    required int questionIndex,
+  }) {
+    return quiz!
+        .questions[questionIndex].alternatives[selectedAlternative - 1].title;
+  }
+
+  Alternative getCorrectAlternative(Question question) =>
+      question.alternatives[question.answer - 1];
+
+  int getSelectedAlternative(int index) => answers[quiz!.id]![index + 1]!;
+
+  Question getQuizQuestion(int index) => quiz!.questions[index];
 }
