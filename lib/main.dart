@@ -1,3 +1,5 @@
+library main;
+
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/model/store/quiz_store.dart';
@@ -13,6 +15,8 @@ import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+
+part 'view/global_components/main_builder.dart';
 
 void main() {
   runApp(const FastTrivia());
@@ -33,59 +37,7 @@ class FastTrivia extends StatelessWidget {
           Provider(create: (context) => QuizStore()),
           Provider(create: (context) => ReviewStore()),
         ],
-        child: Builder(
-          builder: (context) {
-            final appBarStore = Provider.of<TriviaAppBarStore>(
-              context,
-              listen: false,
-            );
-            return WillPopScope(
-              onWillPop: () => onWillPop(context, pageController, appBarStore),
-              child: Scaffold(
-                body: SafeArea(
-                  child: Column(
-                    children: [
-                      Observer(
-                        builder: (_) => TriviaAppBar(
-                          elevate: appBarStore.elevate,
-                          showBackButton: appBarStore.showBackButton,
-                        ),
-                      ),
-                      Expanded(
-                        child: Observer(
-                          builder: (_) {
-                            return PageView(
-                              physics: const NeverScrollableScrollPhysics(),
-                              onPageChanged: (pageIndex) {
-                                TriviaAppBar.updateProperties(
-                                  context,
-                                  pageIndex == TriviaPages.home.index
-                                      ? false
-                                      : true,
-                                  pageIndex >= TriviaPages.test.index
-                                      ? true
-                                      : false,
-                                );
-                              },
-                              controller: pageController,
-                              children: const [
-                                HomeScreen(),
-                                ConfirmationScreen(),
-                                TestScreen(),
-                                ReviewScreen(),
-                                ResultScreen(),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+        child: fastTriviaBuilder(pageController),
       ),
     );
   }

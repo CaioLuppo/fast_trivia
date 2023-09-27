@@ -30,9 +30,11 @@ class QuizSliderController {
   void insertSpace(List<Widget> line) {
     if (line.length == 1) {
       line.insert(1, const SizedBox(width: 16));
-      line.insert(1, const Expanded(flex: 1, child: SizedBox()));
-    } else {
+      line.insert(1, const Expanded(child: SizedBox()));
+    } else if (line.length == 2) {
       line.insert(1, const SizedBox(width: 16));
+    } else {
+      line.add(const SizedBox(width: 16));
     }
   }
 

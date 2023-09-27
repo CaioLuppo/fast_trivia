@@ -17,7 +17,9 @@ class QuizSlider extends StatelessWidget {
           child: PageView.builder(
             onPageChanged: (page) => bulletStore.updateActiveIndex(page),
             itemCount: controller.getPageCount(quizzes.length),
-            physics: const BouncingScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
             controller: pageController,
             itemBuilder: (context, index) {
               final gridList = controller.getQuizGridList(quizzes);

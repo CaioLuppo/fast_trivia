@@ -64,31 +64,44 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
         }),
         Quiz({
           "questionario": {
-            "id": 1,
-            "titulo": "Meu cantinho",
+            "id": 2,
+            "titulo": "Sistema Solar",
             "questoes": [
               {
                 "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
+                "titulo": "Nosso planeta",
+                "pergunta":
+                    "Do sol à extremidade do sistema, qual o número do nosso planeta?",
+                "gabarito": 3,
                 "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
+                  {"id": 1, "titulo": "8"},
+                  {"id": 2, "titulo": "4"},
+                  {"id": 3, "titulo": "3"},
+                  {"id": 4, "titulo": "9"}
                 ]
               },
               {
                 "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
+                "titulo": "Os grandalhões",
+                "pergunta": "Quais os 2 maiores planetas do nossos sistema?",
+                "gabarito": 4,
                 "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
+                  {"id": 1, "titulo": "Marte e Urano"},
+                  {"id": 2, "titulo": "Vênus e Júpiter"},
+                  {"id": 3, "titulo": "Vênus e Saturno"},
+                  {"id": 4, "titulo": "Júpiter e Saturno"}
+                ]
+              },
+              {
+                "id": 3,
+                "titulo": "Os grandalhões",
+                "pergunta": "Quantas luas tem Júpiter?",
+                "gabarito": 1,
+                "alternativas": [
+                  {"id": 1, "titulo": "92"},
+                  {"id": 2, "titulo": "3"},
+                  {"id": 3, "titulo": "6"},
+                  {"id": 4, "titulo": "12"}
                 ]
               }
             ]
@@ -97,192 +110,56 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
         Quiz({
           "questionario": {
             "id": 1,
-            "titulo": "Natureza brasileira",
+            "titulo": "Bichos do Brasil",
             "questoes": [
               {
                 "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
+                "titulo": "Nossos bichos",
+                "pergunta": "Qual animal é símbolo do Brasil?",
+                "gabarito": 3,
                 "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
+                  {"id": 1, "titulo": "Lobo guará"},
+                  {"id": 2, "titulo": "Onça pintada"},
+                  {"id": 3, "titulo": "Sabiá-laranjeira"},
+                  {"id": 4, "titulo": "Arara azul"}
                 ]
               },
               {
                 "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
-                "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
-            ]
-          }
-        }),
-        Quiz({
-          "questionario": {
-            "id": 1,
-            "titulo": "Natureza brasileira",
-            "questoes": [
-              {
-                "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
+                "titulo": "Nossos bichos",
+                "pergunta": "Quais desses animais estão em risco de extinção?",
                 "gabarito": 4,
                 "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
+                  {"id": 1, "titulo": "Onça-pintada"},
+                  {"id": 2, "titulo": "Anta"},
+                  {"id": 3, "titulo": "Mico-leão-dourado"},
+                  {"id": 4, "titulo": "Todos"}
                 ]
               },
               {
-                "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
+                "id": 3,
+                "titulo": "Nossos bichos",
+                "pergunta": "Qual o maior mamífero do Brasil?",
+                "gabarito": 1,
                 "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
-            ]
-          }
-        }),
-        Quiz({
-          "questionario": {
-            "id": 1,
-            "titulo": "Natureza brasileira",
-            "questoes": [
-              {
-                "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
-                "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
+                  {"id": 1, "titulo": "Anta"},
+                  {"id": 2, "titulo": "Onça-pintada"},
+                  {"id": 3, "titulo": "Baleia-jubarte"},
+                  {"id": 4, "titulo": "Ariranha"}
                 ]
               },
               {
-                "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
+                "id": 4,
+                "titulo": "Nossos bichos",
+                "pergunta": "Qual o bicho mais venenoso?",
+                "gabarito": 1,
                 "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
-            ]
-          }
-        }),
-        Quiz({
-          "questionario": {
-            "id": 1,
-            "titulo": "Natureza brasileira",
-            "questoes": [
-              {
-                "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
-                "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
+                  {"id": 1, "titulo": "Jararacuçu"},
+                  {"id": 2, "titulo": "Aranha armadeira"},
+                  {"id": 3, "titulo": "cobra-coral-verdadeira"},
+                  {"id": 4, "titulo": "Jararaca"}
                 ]
               },
-              {
-                "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
-                "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
-            ]
-          }
-        }),
-        Quiz({
-          "questionario": {
-            "id": 1,
-            "titulo": "Natureza brasileira",
-            "questoes": [
-              {
-                "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
-                "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
-                ]
-              },
-              {
-                "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
-                "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
-            ]
-          }
-        }),
-        Quiz({
-          "questionario": {
-            "id": 1,
-            "titulo": "Natureza brasileira",
-            "questoes": [
-              {
-                "id": 1,
-                "titulo": "Florestas brasileiras",
-                "pergunta": "Qual o nome da maior floresta brasileira?",
-                "gabarito": 4,
-                "alternativas": [
-                  {"id": 1, "titulo": "Caatinga"},
-                  {"id": 2, "titulo": "Cerrado"},
-                  {"id": 3, "titulo": "Mata Atlântica"},
-                  {"id": 4, "titulo": "Amazônica"}
-                ]
-              },
-              {
-                "id": 2,
-                "titulo": "Praias brasileiras",
-                "pergunta": "Qual estado tem a maior faixa litorânea?",
-                "gabarito": 3,
-                "alternativas": [
-                  {"id": 1, "titulo": "São Paulo"},
-                  {"id": 2, "titulo": "Maranhão"},
-                  {"id": 3, "titulo": "Bahia"},
-                  {"id": 4, "titulo": "Rio de Janeiro"}
-                ]
-              }
             ]
           }
         }),

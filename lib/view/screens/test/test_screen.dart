@@ -50,12 +50,14 @@ class TestScreen extends StatelessWidget {
         ),
         Observer(
           builder: (_) {
+            print(quizStore.currentQuestionIndex);
             final bool isLast = quizStore.currentQuestionIndex + 1 ==
                 quizStore.quiz!.questions.length;
             final bool isSelected =
                 quizStore.answers[quizStore.quiz!.id]!.containsKey(
               quizStore.currentQuestionIndex + 1,
             );
+            print(isSelected);
             return Padding(
               padding: const EdgeInsets.only(
                 left: 16.0,
