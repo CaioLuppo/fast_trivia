@@ -50,4 +50,10 @@ abstract class _QuizStore with Store {
       answers[quiz!.id] = ObservableMap.of({alternativeId: answer});
     }
   }
+
+  bool isCorrect(int answerIndex) {
+    final question = quiz!.questions[answerIndex];
+    final actualAnswer = answers[quiz!.id]![question.id];
+    return question.answer == actualAnswer;
+  }
 }

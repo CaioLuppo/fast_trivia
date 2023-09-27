@@ -23,9 +23,8 @@ class AlternativeWidget extends StatelessWidget {
           width: double.maxFinite,
           margin: const EdgeInsets.only(bottom: 8.0),
           decoration: BoxDecoration(
-            color: isSelected
-                ? TriviaColors.blue
-                : TriviaColors.unselectedAlternative,
+            color:
+                isSelected ? TriviaColors.blue : TriviaColors.lightGreyWidgets,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Material(

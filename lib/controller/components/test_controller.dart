@@ -1,3 +1,4 @@
+import 'package:fast_trivia/controller/components/page_view_controller.dart';
 import 'package:fast_trivia/main.dart';
 import 'package:fast_trivia/view/global_components/dialog.dart';
 import 'package:fast_trivia/view/screens/test/test_screen.dart';
@@ -12,22 +13,21 @@ Future<void> nextQuestion(BuildContext context, {bool end = false}) async {
       curve: Curves.easeOut,
     );
   } else {
-    bool mustReturn = false;
+    bool doReturn = true;
     await showAlertDialog(
       context,
       title: "Acabou mesmo?",
       description: "Lembre-se de revisar antes de prosseguir. 😉",
       yes: () {
         Navigator.pop(context);
+        doReturn = false;
       },
-      no: () {
-        mustReturn = true;
-        Navigator.pop(context);
-      },
+      no: () => Navigator.pop(context),
     );
-    if (mustReturn) return Future.value();
+    if (doReturn) return Future.value();
 
-    FastTrivia.pageController.nextPage(
+    FastTrivia.pageController.animateToPage(
+      TriviaPages.result.index,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
