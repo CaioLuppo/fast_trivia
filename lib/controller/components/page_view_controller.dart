@@ -1,14 +1,15 @@
 import 'package:fast_trivia/main.dart';
+import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:fast_trivia/model/store/review_store.dart';
 import 'package:fast_trivia/view/global_components/dialog.dart';
 import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void changePageTo(TriviaPages page) {
+void changePageTo(TriviaPages page, {int speed = 300}) {
   FastTrivia.pageController.animateToPage(
     page.index,
-    duration: const Duration(milliseconds: 300),
+    duration: Duration(milliseconds: speed),
     curve: Curves.easeOut,
   );
 }
@@ -40,6 +41,8 @@ void changeToPreviousPage(BuildContext context,
         description: "Caso saia, o progresso do quiz será perdido.",
         yes: () {
           Navigator.pop(context);
+          final store = Provider.of<QuizStore>(context, listen: false);
+          store.answers.remove(store.quiz!.id);
           doReturn = false;
         },
         no: () => Navigator.pop(context),

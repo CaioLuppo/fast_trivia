@@ -6,6 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:fast_trivia/controller/http/dao/quiz_dao.dart' as _i2;
+import 'package:fast_trivia/controller/http/dao/quiz_dao.dart';
 import 'package:fast_trivia/model/quiz.dart' as _i4;
 import 'package:fast_trivia/model/quiz.dart';
 import 'package:mockito/mockito.dart' as _i1;
@@ -29,7 +30,7 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
     _i1.throwOnMissingStub(this);
     _i1.when(getQuestionnaries()).thenAnswer((realInvocation) async {
       await Future.delayed(Duration(seconds: 1));
-      return Future.value(<Quiz>[
+      final list = <Quiz>[
         Quiz({
           "questionario": {
             "id": 1,
@@ -109,7 +110,7 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
         }),
         Quiz({
           "questionario": {
-            "id": 1,
+            "id": 3,
             "titulo": "Bichos do Brasil",
             "questoes": [
               {
@@ -163,7 +164,9 @@ class MockQuizDao extends _i1.Mock implements _i2.QuizDao {
             ]
           }
         }),
-      ]);
+      ];
+      QuizDao.quizzes = list;
+      return Future.value(list);
     });
   }
 

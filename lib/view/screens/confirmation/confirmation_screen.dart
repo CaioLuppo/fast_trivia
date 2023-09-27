@@ -22,27 +22,30 @@ class ConfirmationScreen extends StatelessWidget {
     lockOrientation(false);
     final store = Provider.of<QuizStore>(context);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Header(store: store),
-          const Body(),
-          const SizedBox(
-            height: 16,
-          ),
-          ActionButton(
-            "Iniciar questionário",
-            () {
-              final quizStore = Provider.of<QuizStore>(context, listen: false);
-              quizStore.answers[quizStore.quiz!.id] = ObservableMap();
-              changePageTo(TriviaPages.test);
-            },
-            color: TriviaColors.blue,
+    return store.doingTest
+        ? Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Header(store: store),
+                const Body(),
+                const SizedBox(
+                  height: 16,
+                ),
+                ActionButton(
+                  "Iniciar questionário",
+                  () {
+                    final quizStore =
+                        Provider.of<QuizStore>(context, listen: false);
+                    quizStore.answers[quizStore.quiz!.id] = ObservableMap();
+                    changePageTo(TriviaPages.test);
+                  },
+                  color: TriviaColors.blue,
+                )
+              ],
+            ),
           )
-        ],
-      ),
-    );
+        : Container();
   }
 }

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:provider/provider.dart';
 
-Future<void> nextQuestion(BuildContext context, {bool end = false}) async {
+Future<void> nextQuestion(BuildContext context, int quizId,
+    {bool end = false}) async {
   if (!end) {
     TestScreen.controller.nextPage(
       duration: const Duration(milliseconds: 300),

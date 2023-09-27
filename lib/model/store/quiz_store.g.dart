@@ -38,6 +38,22 @@ mixin _$QuizStore on _QuizStore, Store {
     });
   }
 
+  late final _$doingTestAtom =
+      Atom(name: '_QuizStore.doingTest', context: context);
+
+  @override
+  bool get doingTest {
+    _$doingTestAtom.reportRead();
+    return super.doingTest;
+  }
+
+  @override
+  set doingTest(bool value) {
+    _$doingTestAtom.reportWrite(value, super.doingTest, () {
+      super.doingTest = value;
+    });
+  }
+
   late final _$currentQuestionIndexAtom =
       Atom(name: '_QuizStore.currentQuestionIndex', context: context);
 
@@ -107,9 +123,21 @@ mixin _$QuizStore on _QuizStore, Store {
   }
 
   @override
+  void setDoingTest(bool value) {
+    final _$actionInfo = _$_QuizStoreActionController.startAction(
+        name: '_QuizStore.setDoingTest');
+    try {
+      return super.setDoingTest(value);
+    } finally {
+      _$_QuizStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 quiz: ${quiz},
+doingTest: ${doingTest},
 currentQuestionIndex: ${currentQuestionIndex},
 answers: ${answers},
 correctAnswers: ${correctAnswers},

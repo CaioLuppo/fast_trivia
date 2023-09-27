@@ -8,11 +8,14 @@ import 'package:mockito/annotations.dart';
 // Classe que funcionaria caso houvesse comunicação com API.
 @GenerateMocks([QuizDao])
 class QuizDao {
+  static List<Quiz> quizzes = [];
+
   Future<List<Quiz>> getQuestionnaries() async {
     final response = await http.get(apiUrl);
     final Map<String, dynamic> json = jsonDecode(response.body);
-    
-    return _convertList(json);
+    QuizDao.quizzes = _convertList(json);
+
+    return quizzes;
   }
 
   List<Quiz> _convertList(Map<String, dynamic> json) {

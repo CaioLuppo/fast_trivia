@@ -31,9 +31,20 @@ class ReviewScreen extends StatelessWidget {
               children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                      child: PoetsenOne(
-                        "${quizStore.quiz!.title}:",
-                        fontSize: 33,
+                      child: Column(
+                        children: [
+                          PoetsenOne(
+                            "${quizStore.quiz!.title}:",
+                            fontSize: 33,
+                          ),
+                          InriaSans(
+                            "${quizStore.correctAnswers}/"
+                            "${quizStore.quiz!.questions.length} questões acertadas",
+                            fontSize: 19,
+                            color: TriviaColors.subtitles,
+                            fontWeight: FontWeight.w700,
+                          )
+                        ],
                       ),
                     ),
                   ] +

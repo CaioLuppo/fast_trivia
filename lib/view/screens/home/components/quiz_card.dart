@@ -3,8 +3,8 @@ part of home;
 class QuizCard extends StatelessWidget {
   final Quiz quiz;
   final int index;
+  final bool shouldReview;
 
-  static int cardAmount = 0;
   static const colors = [
     TriviaColors.blue,
     TriviaColors.green,
@@ -20,13 +20,12 @@ class QuizCard extends StatelessWidget {
     }
   }
 
-  QuizCard(
+  const QuizCard(
     this.index,
     this.quiz, {
     super.key,
-  }) {
-    cardAmount++;
-  }
+    this.shouldReview = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,14 @@ class QuizCard extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          changePageTo(TriviaPages.confirmation);
+          if (quizStore.answers.containsKey(quiz.id)) {
+            quizStore.setDoingTest(false);
+            Provider.of<ReviewStore>(context, listen: false).setReviewing(true);
+            changePageTo(TriviaPages.review, speed: 180);
+          } else {
+            quizStore.setDoingTest(true);
+            changePageTo(TriviaPages.confirmation);
+          }
           quizStore.updateConfirmationScreen(quiz);
           appbarStore.updateProperties(showBackButton: true);
         },

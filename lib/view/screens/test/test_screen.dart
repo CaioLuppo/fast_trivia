@@ -25,53 +25,66 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final quizStore = Provider.of<QuizStore>(context, listen: false);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: PageView(
-            controller: controller,
-            onPageChanged: (index) => quizStore.updateCurrentIndex(index),
-            children: List.generate(
-              quizStore.quiz!.questions.length,
-              (index) {
-                final AlternativeStore store = AlternativeStore();
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                    top: 24,
+    return quizStore.doingTest
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (index) => quizStore.updateCurrentIndex(index),
+                  children: List.generate(
+                    quizStore.quiz!.questions.length,
+                    (index) {
+                      final AlternativeStore store = AlternativeStore();
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          top: 24,
+                        ),
+                        child: QuestionPage(
+                            quizStore.quiz!.questions[index], store),
+                      );
+                    },
                   ),
-                  child: QuestionPage(quizStore.quiz!.questions[index], store),
-                );
-              },
-            ),
-          ),
-        ),
-        Observer(
-          builder: (_) {
-            final bool isLast = quizStore.currentQuestionIndex + 1 ==
-                quizStore.quiz!.questions.length;
-            final bool isSelected =
-                quizStore.answers[quizStore.quiz!.id]!.containsKey(
-              quizStore.currentQuestionIndex + 1,
-            );
-            return Padding(
-              padding: const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                bottom: 24.0,
+                ),
               ),
-              child: ActionButton(
-                isLast ? "Finalizar teste" : "Próxima questão",
-                () => isSelected ? nextQuestion(context, end: isLast) : null,
-                color: isLast ? TriviaColors.red : TriviaColors.green,
-                disabled: !isSelected,
-              ),
-            );
-          },
-        )
-      ],
-    );
+              Observer(
+                builder: (_) {
+                  if (!quizStore.answers.containsKey(quizStore.quiz!.id)) {
+                    return Container();
+                  }
+
+                  final bool isLast = quizStore.currentQuestionIndex + 1 ==
+                      quizStore.quiz!.questions.length;
+                  final bool isSelected =
+                      quizStore.answers[quizStore.quiz!.id]!.containsKey(
+                    quizStore.currentQuestionIndex + 1,
+                  );
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      right: 16.0,
+                      bottom: 24.0,
+                    ),
+                    child: ActionButton(
+                      isLast ? "Finalizar teste" : "Próxima questão",
+                      () => isSelected
+                          ? nextQuestion(
+                              context,
+                              quizStore.quiz!.id,
+                              end: isLast,
+                            )
+                          : null,
+                      color: isLast ? TriviaColors.red : TriviaColors.green,
+                      disabled: !isSelected,
+                    ),
+                  );
+                },
+              )
+            ],
+          )
+        : Container();
   }
 }

@@ -14,6 +14,9 @@ abstract class _QuizStore with Store {
   Quiz? quiz;
 
   @observable
+  bool doingTest = false;
+
+  @observable
   int currentQuestionIndex = 0;
 
   @observable
@@ -55,6 +58,11 @@ abstract class _QuizStore with Store {
     } else {
       answers[quiz!.id] = ObservableMap.of({alternativeId: answer});
     }
+  }
+
+  @action
+  void setDoingTest(bool value) {
+    doingTest = value;
   }
 
   // Normal methods
