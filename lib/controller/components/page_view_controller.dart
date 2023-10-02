@@ -6,10 +6,10 @@ import 'package:fast_trivia/view/screens/test/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void changePageTo(TriviaPages page, {int speed = 300}) {
+void changePageTo(TriviaPages page) {
   FastTrivia.pageController.animateToPage(
     page.index,
-    duration: Duration(milliseconds: speed),
+    duration: const Duration(milliseconds: 300),
     curve: Curves.easeOut,
   );
 }

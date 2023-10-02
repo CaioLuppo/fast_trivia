@@ -52,7 +52,9 @@ class TestScreen extends StatelessWidget {
               ),
               Observer(
                 builder: (_) {
-                  if (!quizStore.answers.containsKey(quizStore.quiz!.id)) {
+                  var isAlreadyDone =
+                      !quizStore.answers.containsKey(quizStore.quiz!.id);
+                  if (isAlreadyDone) {
                     return Container();
                   }
 

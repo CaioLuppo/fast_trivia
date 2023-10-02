@@ -12,7 +12,6 @@ import 'package:fast_trivia/model/store/review_store.dart';
 import 'package:fast_trivia/model/store/trivia_appbar_store.dart';
 import 'package:fast_trivia/view/resources/texts.dart';
 import 'package:fast_trivia/view/resources/trivia_colors.dart';
-import 'package:fast_trivia/view/screens/review/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';

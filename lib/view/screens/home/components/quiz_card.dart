@@ -41,7 +41,7 @@ class QuizCard extends StatelessWidget {
           if (quizStore.answers.containsKey(quiz.id)) {
             quizStore.setDoingTest(false);
             Provider.of<ReviewStore>(context, listen: false).setReviewing(true);
-            changePageTo(TriviaPages.review, speed: 180);
+            changePageTo(TriviaPages.review);
           } else {
             quizStore.setDoingTest(true);
             changePageTo(TriviaPages.confirmation);
