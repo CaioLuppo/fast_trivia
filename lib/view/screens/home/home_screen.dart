@@ -2,8 +2,7 @@ library home;
 
 import 'package:fast_trivia/controller/components/home_imports.dart';
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
-import 'package:fast_trivia/controller/http/dao/quiz_dao.dart';
-import 'package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart';
+import 'package:fast_trivia/controller/database/dao.dart';
 import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/model/quiz.dart';
 import 'package:fast_trivia/model/store/bullet_store.dart';
@@ -27,8 +26,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     lockOrientation(true);
-    final QuizDao mock = MockQuizDao();
-    final QuizStore quizStore = Provider.of<QuizStore>(context);
 
     return Column(
       mainAxisSize: MainAxisSize.max,
@@ -40,16 +37,7 @@ class HomeScreen extends StatelessWidget {
             child: QuizzesSession(
               title: "Testes disponíveis:",
               emptyMessage: "Não há nenhum quiz restante! 😎",
-              futureFunction: () async {
-                final quizzes = await mock.getQuestionnaries();
-                final List<Quiz> returnList = [];
-                for (Quiz quiz in quizzes) {
-                  if (!quizStore.answers.containsKey(quiz.id)) {
-                    returnList.add(quiz);
-                  }
-                }
-                return Future.value(returnList);
-              },
+              futureFunction: () => DatabaseDAO.getAvailableQuizzes(context),
             ),
           ),
         ),
@@ -58,15 +46,7 @@ class HomeScreen extends StatelessWidget {
           child: Observer(
             builder: (_) => QuizzesSession(
               title: "Já realizados",
-              futureFunction: () {
-                List<Quiz> quizzes = [];
-                for (Quiz quiz in QuizDao.quizzes) {
-                  if (quizStore.answers.containsKey(quiz.id)) {
-                    quizzes.add(quiz);
-                  }
-                }
-                return Future.value(quizzes);
-              },
+              futureFunction: () => DatabaseDAO.getAlreadyDoneQuizzes(),
               emptyMessage:
                   "Seu questinário aparecerá aqui quando terminar! 😉",
             ),

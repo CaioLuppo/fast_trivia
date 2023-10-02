@@ -1,5 +1,3 @@
-import "package:fast_trivia/controller/http/dao/quiz_dao.dart";
-import "package:fast_trivia/controller/http/dao/quiz_dao.mocks.dart";
 import "package:fast_trivia/model/quiz.dart";
 import "package:flutter_test/flutter_test.dart";
 
@@ -44,12 +42,5 @@ void main() {
     } catch (_) {}
 
     expect(quiz is Quiz, true);
-  });
-
-  test("Verifies if mock returns a valid data", () async {
-    final QuizDao mock = MockQuizDao();
-    final list = await mock.getQuestionnaries();
-
-    expect(list.isNotEmpty, true);
   });
 }

@@ -52,11 +52,12 @@ abstract class _QuizStore with Store {
   }
 
   @action
-  void addAnswer(int alternativeId, int answer) {
-    if (answers[quiz!.id] != null) {
-      answers[quiz!.id]![alternativeId] = answer;
+  void addAnswer(int questionId, int answerId, {int? quizId}) {
+    int id = quizId ?? quiz!.id;
+    if (answers[id] != null) {
+      answers[id]![questionId] = answerId;
     } else {
-      answers[quiz!.id] = ObservableMap.of({alternativeId: answer});
+      answers[id] = ObservableMap.of({questionId: answerId});
     }
   }
 

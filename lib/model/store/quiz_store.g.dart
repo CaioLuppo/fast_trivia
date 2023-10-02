@@ -112,11 +112,11 @@ mixin _$QuizStore on _QuizStore, Store {
   }
 
   @override
-  void addAnswer(int alternativeId, int answer) {
+  void addAnswer(int questionId, int answerId, {int? quizId}) {
     final _$actionInfo =
         _$_QuizStoreActionController.startAction(name: '_QuizStore.addAnswer');
     try {
-      return super.addAnswer(alternativeId, answer);
+      return super.addAnswer(questionId, answerId, quizId: quizId);
     } finally {
       _$_QuizStoreActionController.endAction(_$actionInfo);
     }

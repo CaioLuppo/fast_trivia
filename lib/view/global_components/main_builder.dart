@@ -3,6 +3,7 @@ part of main;
 Builder fastTriviaBuilder(PageController pageController) {
   return Builder(
     builder: (context) {
+      DatabaseDAO.loadAnswers(context);
       final appBarStore = Provider.of<TriviaAppBarStore>(
         context,
         listen: false,

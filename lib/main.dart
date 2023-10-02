@@ -1,6 +1,8 @@
 library main;
 
 import 'package:fast_trivia/controller/components/page_view_controller.dart';
+import 'package:fast_trivia/controller/database/dao.dart';
+import 'package:fast_trivia/controller/http/dao/quiz_dao.dart';
 import 'package:fast_trivia/controller/util/system.dart';
 import 'package:fast_trivia/model/store/quiz_store.dart';
 import 'package:fast_trivia/model/store/review_store.dart';
