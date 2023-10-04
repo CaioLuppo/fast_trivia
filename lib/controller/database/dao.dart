@@ -40,7 +40,6 @@ abstract class DatabaseDAO {
     final db = await AnswersDatabase.getInstance();
 
     db.query("answers").then((value) {
-      print("bd $value");
       for (var map in value) {
         store.addAnswer(
           map["questionId"]! as int,

@@ -32,6 +32,7 @@ class TestScreen extends StatelessWidget {
               Expanded(
                 child: PageView(
                   controller: controller,
+                  physics: const NeverScrollableScrollPhysics(),
                   onPageChanged: (index) => quizStore.updateCurrentIndex(index),
                   children: List.generate(
                     quizStore.quiz!.questions.length,
