@@ -28,7 +28,7 @@ abstract class DatabaseDAO {
               "questionId": key,
               "answerId": value,
             },
-            where: "quizId = $quizId",
+            where: "(quizId = $quizId AND questionId = $key)",
           );
         });
       }
@@ -40,6 +40,7 @@ abstract class DatabaseDAO {
     final db = await AnswersDatabase.getInstance();
 
     db.query("answers").then((value) {
+      print("bd $value");
       for (var map in value) {
         store.addAnswer(
           map["questionId"]! as int,
@@ -52,7 +53,8 @@ abstract class DatabaseDAO {
 
   static Future<List<Map<String, Object?>>> getAnswers() async {
     final db = await AnswersDatabase.getInstance();
-    return await db.query("answers");
+    final answers = await db.query("answers");
+    return answers;
   }
 
   static Future<List<Quiz>> getAvailableQuizzes(BuildContext context) async {
@@ -72,10 +74,10 @@ abstract class DatabaseDAO {
   static Future<List<Quiz>> getAlreadyDoneQuizzes() async {
     final QuizDao mock = MockQuizDao();
     await mock.getQuestionnaries();
+    final answers = await DatabaseDAO.getAnswers();
 
     List<Quiz> quizzes = [];
     for (Quiz quiz in QuizDao.quizzes) {
-      final answers = await DatabaseDAO.getAnswers();
       int? lastQuizId;
       for (Map<String, Object?> element in answers) {
         if (lastQuizId != quiz.id && element["quizId"] == quiz.id) {
