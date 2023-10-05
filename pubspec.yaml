@@ -1,7 +1,7 @@
 name: fast_trivia
 description: A new Flutter project.
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -27,6 +27,7 @@ dependencies:
   page_transition: ^2.0.9
   sqflite: ^2.3.0
   path: ^1.8.3
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,10 @@ dev_dependencies:
   test: ^1.24.1
   build_runner: ^2.4.6
   mobx_codegen: ^2.3.0
+
+flutter_launcher_icons:
+  image_path: "assets/icon.png" 
+  android: true
 
 flutter:
   fonts:
