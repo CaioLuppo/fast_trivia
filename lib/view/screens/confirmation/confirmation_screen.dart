@@ -19,7 +19,6 @@ class ConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    lockOrientation(false);
     final store = Provider.of<QuizStore>(context);
 
     return store.doingTest
